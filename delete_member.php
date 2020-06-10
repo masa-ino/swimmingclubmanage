@@ -11,6 +11,18 @@ if  ($_SESSION['time'] + 3600 > time()) {
  
 $members = $dbh->query('SELECT * FROM members');
 
+if (!empty($_POST)){
+
+  if(empty($error)){
+      $_SESSION['join'] = $_POST;
+      header('Location: delete_confirm.php');
+      exit();
+    }
+  }
+ 
+if ($_REQUEST['action'] == 'rewrite'  && isset($_SESSION['join'])){
+  $_POST = $_SESSION['join'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,29 +60,22 @@ $members = $dbh->query('SELECT * FROM members');
     </nav>
   </header>
   <main class="uk-container uk-container-small">
-    <h1 class="uk-heading-line uk-text-center"><span>残り回数</span></h1>
-    <table class="uk-table uk-table-striped">
-      <thead>
-          <tr>
-              <th>メンバー</th>
-              <th>残り回数</th>
-          </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($members as $member): ?>  
-          <tr>
-                <td><?php print(htmlspecialchars($member['name'], ENT_QUOTES)); ?></td>
-                <td><?php print(htmlspecialchars($member['count'], ENT_QUOTES)); ?>回</td>
-            </tr>
-        <?php endforeach; ?>
-      </tbody>
-  </table>
+    <h1 class="uk-heading-line uk-text-center"><span>削除するメンバーを選択</span></h1>
 
-  <div class ="uk-text-center">
-    <a href ="money.php" class="uk-button uk-button-primary">金額追加</a>
-    <a href ="member.php" class="uk-button uk-button-primary">メンバー編集</a>
-    <a href ="active.php" class="uk-button uk-button-primary">活動</a>
-  </div>
+    <form action="" method="post">
+      <fieldset class="uk-fieldset">
+        <div class="uk-margin uk-grid-small  uk-flex uk-flex-center">
+        <?php foreach ($members as $member): ?>  
+          <label><input class="uk-checkbox" type="checkbox" name="name[]" value ="<?php print(htmlspecialchars($member['name'], ENT_QUOTES)); ?>"> <?php print(htmlspecialchars($member['name'], ENT_QUOTES)); ?></label>
+
+        <?php endforeach ?>
+        </div>
+
+        <div class="uk-text-center">
+        <button class="uk-button uk-button-primary" type="submit">確認</button>
+      </div>
+      </fieldset>
+    </form>
   </main>
   <footer>
 
