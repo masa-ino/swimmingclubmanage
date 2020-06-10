@@ -15,7 +15,7 @@ if (!empty($_POST)){
 
   if(empty($error)){
       $_SESSION['join'] = $_POST;
-      header('Location: delete_confirm.php');
+      header('Location: delete_member_confirm.php');
       exit();
     }
   }

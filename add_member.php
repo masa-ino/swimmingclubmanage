@@ -7,7 +7,7 @@ if (!empty($_POST)) {
     $error['member'] ='blank';
   }
   $_SESSION['join'] = $_POST;
-  header('Location: member_confirm.php');
+  header('Location: add_member_confirm.php');
   exit();
 }
  
