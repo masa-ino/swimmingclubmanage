@@ -8,7 +8,7 @@ if(!isset($_SESSION['join'])){
 }
 if (!empty($_POST)){
   foreach( array_map(null,$_SESSION['join']['now_count'] , $_SESSION['join']['name']) as [$count,$name] ) {
-    $statement = $db->prepare('UPDATE members SET count =? WHERE name = ?');
+    $statement = $dbh->prepare('UPDATE members SET count =? WHERE name = ?');
     $statement->execute(array($count - 1,$name));
   }
 	unset($_SESSION['join']);
