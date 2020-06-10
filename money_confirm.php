@@ -7,7 +7,7 @@ if(!isset($_SESSION['join'])){
 	exit();
 }
 if (!empty($_POST)){
-	$statement = $db->prepare('UPDATE members SET count =? WHERE name = ?');
+	$statement = $dbh->prepare('UPDATE members SET count =? WHERE name = ?');
 	$statement->execute(array($_SESSION['join']['add_count'] +$_SESSION['join']['now_count'],$_SESSION['join']['name']));
 	unset($_SESSION['join']);
 

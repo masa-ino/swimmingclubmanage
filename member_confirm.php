@@ -7,7 +7,7 @@ if(!isset($_SESSION['join'])){
 	exit();
 }
 if (!empty($_POST)){
-	$statement = $db->prepare('INSERT INTO members SET name =? , count = 0');
+	$statement = $dbh->prepare('INSERT INTO members SET name =? , count = 0');
 	$statement->execute(array($_SESSION['join']['member']));
 	unset($_SESSION['join']);
 

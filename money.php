@@ -9,7 +9,7 @@ if  ($_SESSION['time'] + 3600 > time()) {
   exit();
 }
  
-$members = $db->query('SELECT * FROM members');
+$members = $dbh->query('SELECT * FROM members');
 
 if (!empty($_POST)){
 

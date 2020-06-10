@@ -7,7 +7,7 @@ require('dbconnect.php');
 if(!empty($_POST)){
   if(!empty($_POST)){
     if($_POST['password'] !== ''){
-      $login =$db->prepare('SELECT * FROM posts WHERE password=?');
+      $login =$dbh->prepare('SELECT * FROM posts WHERE password=?');
       $login->execute(array(
         sha1($_POST['password'])
       ));
