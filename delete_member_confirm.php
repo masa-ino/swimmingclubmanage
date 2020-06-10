@@ -7,7 +7,7 @@ if(!isset($_SESSION['join'])){
 	exit();
 }
 if (!empty($_POST)){
-  foreach( array_map(null, $_SESSION['join']['name']) as [$name] ) {
+  foreach( array_map(null, $_SESSION['join']['name']) as $name) {
     $statement = $dbh->prepare('DELETE FROM members WHERE name = ?');
     $statement->execute(array($name));
   }
@@ -61,8 +61,8 @@ if (!empty($_POST)){
       <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin">
         <h3 class="uk-card-title">削除するメンバー</h3>
         <ul class="uk-list">
-        <?php foreach ($_SESSION['join']['name'] as $active_member): ?>
-          <li><?php print(htmlspecialchars($active_member, ENT_QUOTES)) ?></li>
+        <?php foreach ($_SESSION['join']['name'] as $delete_member): ?>
+          <li><?php print(htmlspecialchars($delete_member, ENT_QUOTES)) ?></li>
           <?php endforeach ?>
       </ul>
       </div>
