@@ -1,9 +1,6 @@
 <?php
-ini_set( 'display_errors', 1 );
-ini_set( 'error_reporting', E_ALL );
 session_start();
 require('dbconnect.php');
-
 
 if(!empty($_POST)){
   if(!empty($_POST)){
